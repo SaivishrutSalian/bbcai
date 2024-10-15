@@ -1,0 +1,19 @@
+% Base case: 2 is prime.
+is_prime(2) :- !.
+
+% Numbers less than 2 are not prime.
+is_prime(N) :- 
+    N < 2, !, fail.
+
+% Check if N is divisible by any number from 2 to sqrt(N).
+is_prime(N) :- 
+    \+ has_factor(N, 2).
+
+% Helper predicate: Check if N has a factor starting from F.
+has_factor(N, F) :- 
+    N mod F =:= 0.
+
+has_factor(N, F) :- 
+    F * F < N,
+    F2 is F + 1,
+    has_factor(N, F2).

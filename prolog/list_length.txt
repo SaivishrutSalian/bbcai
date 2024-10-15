@@ -1,0 +1,5 @@
+list_length([], 0).  % Base case: The length of an empty list is 0.
+
+list_length([_|Tail], N) :-  
+    list_length(Tail, N1),  % Recursively compute the length of the tail.
+    N is N1 + 1.  

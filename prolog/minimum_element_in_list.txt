@@ -1,0 +1,2 @@
+min_list([X], X).
+min_list([H|T],Min):-min_list(T, MinT), Min is min(H, MinT).

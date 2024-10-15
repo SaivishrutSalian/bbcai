@@ -1,0 +1,29 @@
+% Define adjacent regions
+adjacent(a, b).
+adjacent(b, c).
+adjacent(c, a).
+
+% Define possible colors
+color(red).
+color(blue).
+color(green).
+
+% Assign colors to regions
+map_coloring(Region1Color, Region2Color, Region3Color) :-
+    color(Region1Color),      % Assign a color to region a
+    color(Region2Color),      % Assign a color to region b
+    color(Region3Color),      % Assign a color to region c
+    adjacent(a, b),           % a is adjacent to b
+    adjacent(b, c),           % b is adjacent to c
+    adjacent(c, a),           % c is adjacent to a
+    Region1Color \= Region2Color, % a and b must have different colors
+    Region2Color \= Region3Color, % b and c must have different colors
+    Region3Color \= Region1Color. % c and a must have different colors
+
+% Query to color the map
+color_map(Colors) :-
+    map_coloring(Region1Color, Region2Color, Region3Color),
+    Colors = [a-Region1Color, b-Region2Color, c-Region3Color].
+
+% Example query to get the colored map
+% ?- color_map(Colors).
